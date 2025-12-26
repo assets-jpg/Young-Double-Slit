@@ -1,39 +1,44 @@
-using UnityEngine;
-
+﻿using UnityEngine;
+using System.Collections;
 
 public enum Scene3State
 {
     WaveNature,
     DoubleSlitWaves,
     InterferenceIntro,
-    PathDifference,
     Completed
 }
 
 public class Scene3_UIManager : MonoBehaviour
 {
     [Header("Panels")]
-    public GameObject wavePanel;              // Scene 3A
-    public GameObject doubleSlitPanel;        // Scene 3B
+    public GameObject wavePanel;
+    public GameObject doubleSlitPanel;
     public GameObject interferencePanel;
     public GameObject constructiveInterferencePoint;
-    public GameObject destructiveInterferencePoint;  // Scene 3C tablet
-                                                      // Scene 3C tablet
+    public GameObject destructiveInterferencePoint;
     public GameObject signWavesPanel;
-    public GameObject pathDifferencePanel;
-    [Header("SCRIPTS")]
+
+    [Header("Scripts")]
     public InterferenceController interferenceController;
 
+    [Header("Holograms")]
+    public GameObject hologram1;
+    public GameObject hologram2;
 
-    [Header("Prompts")]
-    public GameObject pointFringePrompt;
+    [Header("Interference Settings")]
+    public float nextHologramDelay = 10f;
 
     private Scene3State currentState;
+
+    // 🔹 NEW FLAGS
+    private bool constructiveExplored = false;
+    private bool destructiveExplored = false;
+    private bool nextHologramCalled = false;
 
     void Start()
     {
         DisableAll();
-
         SetState(Scene3State.WaveNature);
     }
 
@@ -43,81 +48,64 @@ public class Scene3_UIManager : MonoBehaviour
 
     void SetState(Scene3State newState)
     {
+        StopAllCoroutines();
+
         currentState = newState;
         DisableAll();
 
+        // Reset exploration flags when entering interference
+        if (newState == Scene3State.InterferenceIntro)
+        {
+            constructiveExplored = false;
+            destructiveExplored = false;
+            nextHologramCalled = false;
+        }
+
         switch (currentState)
         {
-            /* ---------- Scene 3A ---------- */
             case Scene3State.WaveNature:
-
                 wavePanel.SetActive(true);
                 AudioManager.Instance.PlayLightAsWave();
                 Invoke(nameof(OnWaveAnimationFinished), 10f);
                 break;
 
-            /* ---------- Scene 3B ---------- */
             case Scene3State.DoubleSlitWaves:
                 doubleSlitPanel.SetActive(true);
                 AudioManager.Instance.PlayTwoSlitsTwoWaves();
-                Invoke(nameof(OnDoubleSlitAnimationFinished), 15f);
-
+                ActivateHologramAfterDelay(hologram1, 20f);
                 break;
 
-            /* ---------- Scene 3C ---------- */
             case Scene3State.InterferenceIntro:
-                doubleSlitPanel.SetActive(false);
                 interferencePanel.SetActive(true);
                 signWavesPanel.SetActive(true);
                 AudioManager.Instance.PlayWaveInterferenceIntro();
                 break;
 
-            
-
-            /* ---------- Scene 3D ---------- */
-            case Scene3State.PathDifference:
-                pathDifferencePanel.SetActive(true);
-                pointFringePrompt.SetActive(true);
-               // AudioManager.Instance.PlayPathDifference();
-                break;
-
             case Scene3State.Completed:
-               // AudioManager.Instance.PlayFringeSpacingIntro();
+                GameManager.Instance.LoadScene("Scene 4");
                 break;
         }
     }
 
-    void DisableAll()
+    /* =======================
+     *  HOLOGRAM DELAY
+     * ======================= */
+
+    void ActivateHologramAfterDelay(GameObject hologram, float delay)
     {
-        wavePanel?.SetActive(false);
-        doubleSlitPanel?.SetActive(false);
-        interferencePanel?.SetActive(false);
-        signWavesPanel.SetActive(false);
+        if (hologram == null) return;
+        StartCoroutine(ActivateAfterDelay(hologram, delay));
+    }
 
-        // pathDifferencePanel?.SetActive(false);
-
-
-        //pointFringePrompt?.SetActive(false);
+    IEnumerator ActivateAfterDelay(GameObject hologram, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        hologram.SetActive(true);
     }
 
     /* =======================
-     *  EVENTS FROM ANIMATION / UI
+     *  INTERFERENCE LOGIC
      * ======================= */
-
-    // Called when Scene 3A animation finishes
-    public void OnWaveAnimationFinished()
-    {
-        if (currentState == Scene3State.WaveNature)
-            SetState(Scene3State.DoubleSlitWaves);
-    }
-
-    // Called when double slit wave animation finishes
-    public void OnDoubleSlitAnimationFinished()
-    {
-        if (currentState == Scene3State.DoubleSlitWaves)
-            SetState(Scene3State.InterferenceIntro);
-    }
-
 
     public void SetConstructive()
     {
@@ -125,6 +113,8 @@ public class Scene3_UIManager : MonoBehaviour
         constructiveInterferencePoint.SetActive(true);
         destructiveInterferencePoint.SetActive(false);
 
+        constructiveExplored = true;
+        CheckInterferenceCompletion();
     }
 
     public void SetDestructive()
@@ -133,20 +123,61 @@ public class Scene3_UIManager : MonoBehaviour
         constructiveInterferencePoint.SetActive(false);
         destructiveInterferencePoint.SetActive(true);
 
-
-    }
-    // Called after either constructive or destructive animation
-    public void OnInterferenceExampleFinished()
-    {
-        
-            SetState(Scene3State.PathDifference);
-        
+        destructiveExplored = true;
+        CheckInterferenceCompletion();
     }
 
-    // User points at first bright fringe
-    public void OnFringePointed()
+    void CheckInterferenceCompletion()
     {
-        if (currentState == Scene3State.PathDifference)
-            SetState(Scene3State.Completed);
+        if (constructiveExplored && destructiveExplored && !nextHologramCalled)
+        {
+            nextHologramCalled = true;
+            StartCoroutine(CallNextHologramAfterDelay());
+        }
+    }
+
+    IEnumerator CallNextHologramAfterDelay()
+    {
+        yield return new WaitForSeconds(nextHologramDelay);
+        hologram2.SetActive(true);
+    }
+
+    /* =======================
+     *  HELPERS
+     * ======================= */
+
+    void DisableAll()
+    {
+        wavePanel?.SetActive(false);
+        doubleSlitPanel?.SetActive(false);
+        interferencePanel?.SetActive(false);
+        signWavesPanel?.SetActive(false);
+
+        constructiveInterferencePoint?.SetActive(false);
+        destructiveInterferencePoint?.SetActive(false);
+
+        hologram1?.SetActive(false);
+        hologram2?.SetActive(false);
+    }
+
+    /* =======================
+     *  STATE CALLBACKS
+     * ======================= */
+
+    public void OnWaveAnimationFinished()
+    {
+        if (currentState == Scene3State.WaveNature)
+            SetState(Scene3State.DoubleSlitWaves);
+    }
+
+    public void OnInterferenceIntroFinished()
+    {
+        if (currentState == Scene3State.DoubleSlitWaves)
+            SetState(Scene3State.InterferenceIntro);
+    }
+
+    public void OnComplete()
+    {
+        SetState(Scene3State.Completed);
     }
 }

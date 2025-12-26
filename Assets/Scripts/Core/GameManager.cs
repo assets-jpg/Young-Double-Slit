@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        Debug.Log("Called after 5 seconds");
     }
 
     /* =======================

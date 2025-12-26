@@ -22,7 +22,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip InterferenceIntro;
     public AudioClip constructiveInterference;
     public AudioClip destructiveInterference;
-
+    public AudioClip followHologram;
 
 
 
@@ -102,6 +102,10 @@ public class AudioManager : MonoBehaviour
     public void PlayDestructiveInterference()
     {
         PlayVO(destructiveInterference);
+    }
+    public void PlayFollowHologram()
+    {
+        PlayVO(followHologram);
     }
 
 

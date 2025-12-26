@@ -1,7 +1,5 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum Scene1State
@@ -128,7 +126,8 @@ public class Scene1_UIManager : MonoBehaviour
 
     void LoadNextScene()
     {
-        SceneManager.LoadScene("Scene 2");
+        GameManager.Instance.LoadScene("Scene 2");
+
     }
 
 

@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using UnityEngine.SceneManagement;
-
-
 public enum Scene2State
 {
     Title,
@@ -76,9 +73,6 @@ public class Scene2_UIManager : MonoBehaviour
                 AudioManager.Instance.PlayObserveThePattern();
                 Invoke(nameof(OnUserReachedWall), 24f);
 
-                
-               
-
                 break;
 
             case Scene2State.Completed:
@@ -92,7 +86,8 @@ public class Scene2_UIManager : MonoBehaviour
 
     void LoadNextScene()
     {
-        SceneManager.LoadScene("Scene 3");
+        GameManager.Instance.LoadScene("Scene 3");
+
     }
 
     IEnumerator TitleRoutine()
