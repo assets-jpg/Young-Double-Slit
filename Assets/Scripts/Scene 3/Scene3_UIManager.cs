@@ -14,9 +14,8 @@ public class Scene3_UIManager : MonoBehaviour
     [Header("Panels")]
     public GameObject wavePanel;
     public GameObject doubleSlitPanel;
-    public GameObject interferencePanel;
-    public GameObject constructiveInterferencePoint;
-    public GameObject destructiveInterferencePoint;
+    public GameObject interferenceTypeUI;
+    public GameObject interferenceFringePanel;
     public GameObject signWavesPanel;
 
     [Header("Scripts")]
@@ -71,12 +70,13 @@ public class Scene3_UIManager : MonoBehaviour
 
             case Scene3State.DoubleSlitWaves:
                 doubleSlitPanel.SetActive(true);
+                interferenceFringePanel.SetActive(true);
                 AudioManager.Instance.PlayTwoSlitsTwoWaves();
                 ActivateHologramAfterDelay(hologram1, 20f);
                 break;
 
             case Scene3State.InterferenceIntro:
-                interferencePanel.SetActive(true);
+                interferenceTypeUI.SetActive(true);
                 signWavesPanel.SetActive(true);
                 AudioManager.Instance.PlayWaveInterferenceIntro();
                 break;
@@ -110,21 +110,21 @@ public class Scene3_UIManager : MonoBehaviour
     public void SetConstructive()
     {
         interferenceController.SetConstructive();
-        constructiveInterferencePoint.SetActive(true);
-        destructiveInterferencePoint.SetActive(false);
 
         constructiveExplored = true;
         CheckInterferenceCompletion();
+        AudioManager.Instance.PlayConstructiveInterference();
+
     }
 
     public void SetDestructive()
     {
         interferenceController.SetDestructive();
-        constructiveInterferencePoint.SetActive(false);
-        destructiveInterferencePoint.SetActive(true);
 
         destructiveExplored = true;
         CheckInterferenceCompletion();
+        AudioManager.Instance.PlayDestructiveInterference();
+
     }
 
     void CheckInterferenceCompletion()
@@ -150,12 +150,8 @@ public class Scene3_UIManager : MonoBehaviour
     {
         wavePanel?.SetActive(false);
         doubleSlitPanel?.SetActive(false);
-        interferencePanel?.SetActive(false);
+        interferenceFringePanel?.SetActive(false);
         signWavesPanel?.SetActive(false);
-
-        constructiveInterferencePoint?.SetActive(false);
-        destructiveInterferencePoint?.SetActive(false);
-
         hologram1?.SetActive(false);
         hologram2?.SetActive(false);
     }
