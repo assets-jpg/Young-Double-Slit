@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: d88d1cf7c8470024899d3a001e786743
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - voiceSource: {instanceID: 0}
+  - introClip: {fileID: 8300000, guid: 0734bb8fd92cc31489ccb4247b9bca22, type: 3}
+  - natureOfLightClip: {fileID: 8300000, guid: d12d5e33a30028e42bfbf1066d7f8f1d, type: 3}
+  - lighterClick: {fileID: 8300000, guid: 16655f6b77e5fc149a04f4a1f644499d, type: 3}
+  - rotateObj: {fileID: 8300000, guid: ea7414a74f646884aa5ce0574ad2eaeb, type: 3}
+  - metalClick: {fileID: 8300000, guid: 0f208ebc2d482714cb6456d44ae7b8ad, type: 3}
+  - lampLightSource: {fileID: 8300000, guid: 389f40e5866db9241876e9e192330bcb, type: 3}
+  - placeDoubleSlit: {fileID: 8300000, guid: 06407776a865a9a439f5a79902bc47c5, type: 3}
+  - interferencePattern: {fileID: 8300000, guid: 019bfc88a6cbb944586aeaba2ab06d93, type: 3}
+  - labTransition: {fileID: 8300000, guid: 8d2b40142243ced41a26ab9673a29a5e, type: 3}
+  - LightAsWave: {fileID: 8300000, guid: c01e21e845a1a6541854f3f1de66135e, type: 3}
+  - TwoSlitsTwoWaves: {fileID: 8300000, guid: 4678e8a53eb92e145a11a334c5817731, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
