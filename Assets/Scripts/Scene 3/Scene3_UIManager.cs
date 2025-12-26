@@ -78,6 +78,8 @@ public class Scene3_UIManager : MonoBehaviour
             case Scene3State.InterferenceIntro:
                 interferenceTypeUI.SetActive(true);
                 signWavesPanel.SetActive(true);
+                interferenceFringePanel.SetActive(true);
+
                 AudioManager.Instance.PlayWaveInterferenceIntro();
                 break;
 
