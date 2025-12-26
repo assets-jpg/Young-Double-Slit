@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: c3fd45eac33ad0a4197b59987eff6f57, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -2469,10 +2469,17 @@ MonoBehaviour:
   natureOfLightClip: {fileID: 8300000, guid: d12d5e33a30028e42bfbf1066d7f8f1d, type: 3}
   lighterClick: {fileID: 8300000, guid: 16655f6b77e5fc149a04f4a1f644499d, type: 3}
   rotateObj: {fileID: 8300000, guid: ea7414a74f646884aa5ce0574ad2eaeb, type: 3}
-  metalClick: {fileID: 0}
-  lampLightSource: {fileID: 0}
-  placeDoubleSlit: {fileID: 0}
-  interferencePattern: {fileID: 0}
+  metalClick: {fileID: 8300000, guid: 0f208ebc2d482714cb6456d44ae7b8ad, type: 3}
+  lampLightSource: {fileID: 8300000, guid: 389f40e5866db9241876e9e192330bcb, type: 3}
+  placeDoubleSlit: {fileID: 8300000, guid: 06407776a865a9a439f5a79902bc47c5, type: 3}
+  interferencePattern: {fileID: 8300000, guid: 019bfc88a6cbb944586aeaba2ab06d93, type: 3}
+  labTransition: {fileID: 8300000, guid: 8d2b40142243ced41a26ab9673a29a5e, type: 3}
+  LightAsWave: {fileID: 8300000, guid: c01e21e845a1a6541854f3f1de66135e, type: 3}
+  TwoSlitsTwoWaves: {fileID: 8300000, guid: 4678e8a53eb92e145a11a334c5817731, type: 3}
+  InterferenceIntro: {fileID: 8300000, guid: c2beef6c48bab1343af9d7b2a837c502, type: 3}
+  constructiveInterference: {fileID: 8300000, guid: 0bad06629f3697e4f9236450a59dc35d, type: 3}
+  destructiveInterference: {fileID: 8300000, guid: ad5999debdfab39489ae8b6d9bf8ba04, type: 3}
+  followHologram: {fileID: 8300000, guid: 73be5b2ca03ff004d82ff051dbe32c5c, type: 3}
 --- !u!1 &1861029421
 GameObject:
   m_ObjectHideFlags: 0
