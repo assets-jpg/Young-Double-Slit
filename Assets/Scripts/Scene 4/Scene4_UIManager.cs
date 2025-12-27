@@ -4,9 +4,8 @@ using UnityEngine.UI;
 public class Scene4_UIManager : MonoBehaviour
 {
     // ---------------- UI ----------------
-    [Header("Slider panel ")]
+    [Header("Slider Panel")]
     public GameObject SliderPanel;
-
 
     [Header("Wavelength Slider")]
     public Slider wavelengthSlider;
@@ -44,14 +43,26 @@ public class Scene4_UIManager : MonoBehaviour
     public GameObject slit2;
     public GameObject slit3;
 
-    // ---------------- STATE ----------------
-    enum UIStage
-    {
-        Wavelength,
-        Distance,
-        Slit
-    }
+    // ---------------- ARROWS ----------------
+    [Header("Wavelength Arrow")]
+    public Transform wavelengthArrow;
+    public float wavelengthArrowMultiplier = 0.5f;
 
+    [Header("Distance Arrow")]
+    public Transform distanceArrow;
+    public float distanceArrowMultiplier = 0.5f;
+
+    [Header("Slit Separation Arrow")]
+    public Transform slitArrow;
+    public float slitArrowMultiplier = 0.5f;
+
+    // ---------------- BASE SCALES ----------------
+    float wavelengthArrowBaseZ;
+    float distanceArrowBaseZ;
+    float slitArrowBaseZ;
+
+    // ---------------- STATE ----------------
+    enum UIStage { Wavelength, Distance, Slit }
     UIStage currentStage = UIStage.Wavelength;
 
     bool wavelengthTouched = false;
@@ -60,29 +71,30 @@ public class Scene4_UIManager : MonoBehaviour
     // ---------------- START ----------------
     void Start()
     {
-        // Slider listeners
         wavelengthSlider.onValueChanged.AddListener(OnWavelengthChanged);
         distanceSlider.onValueChanged.AddListener(OnDistanceChanged);
         slitSeparationSlider.onValueChanged.AddListener(OnSlitSeparationChanged);
 
-        // Next button
         nextButton.onClick.AddListener(OnNextClicked);
 
-        // Initial UI state
         wavelengthSlider.interactable = true;
         distanceSlider.interactable = false;
         slitSeparationSlider.interactable = false;
         nextButton.interactable = false;
+
+        // Store BASE scales ONCE
+        if (wavelengthArrow) wavelengthArrowBaseZ = wavelengthArrow.localScale.z;
+        if (distanceArrow) distanceArrowBaseZ = distanceArrow.localScale.z;
+        if (slitArrow) slitArrowBaseZ = slitArrow.localScale.z;
+
         AudioManager.Instance.Playscene4Intro();
         Invoke(nameof(SliderPanelAppear), 10f);
-
     }
 
-    public void SliderPanelAppear()
+    void SliderPanelAppear()
     {
         SliderPanel.SetActive(true);
         AudioManager.Instance.PlaywaveLengthIntro();
-
     }
 
     // ---------------- NEXT BUTTON ----------------
@@ -96,14 +108,12 @@ public class Scene4_UIManager : MonoBehaviour
                 currentStage = UIStage.Distance;
                 distanceSlider.interactable = true;
                 AudioManager.Instance.PlaydistanceIntro();
-
                 break;
 
             case UIStage.Distance:
                 currentStage = UIStage.Slit;
                 slitSeparationSlider.interactable = true;
                 AudioManager.Instance.PlayslitseperationIntro();
-
                 break;
         }
     }
@@ -119,14 +129,21 @@ public class Scene4_UIManager : MonoBehaviour
             nextButton.interactable = true;
         }
 
+        ScaleArrowNormalized(
+            wavelengthArrow,
+            wavelengthArrowBaseZ,
+            wavelengthArrowMultiplier,
+            wavelengthSlider
+        );
+
         switch (Mathf.RoundToInt(value))
         {
             case 1: wavelengthLayout.spacing = 0.1f; break;
             case 2: wavelengthLayout.spacing = 0.2f; break;
             case 3: wavelengthLayout.spacing = 0.3f; break;
         }
-        AudioManager.Instance.PlaywaveLengthExplain();
 
+        AudioManager.Instance.PlaywaveLengthExplain();
     }
 
     // ---------------- DISTANCE ----------------
@@ -142,22 +159,36 @@ public class Scene4_UIManager : MonoBehaviour
         float spacing = Mathf.Lerp(minSpacing, maxSpacing, value);
         wavelengthLayout.spacing = spacing;
 
+        ScaleArrowNormalized(
+            distanceArrow,
+            distanceArrowBaseZ,
+            distanceArrowMultiplier,
+            distanceSlider
+        );
+
         if (!distanceTouched && currentStage == UIStage.Distance)
         {
             distanceTouched = true;
             nextButton.interactable = true;
         }
-        AudioManager.Instance.PlaydistanceExplain();
 
+        AudioManager.Instance.PlaydistanceExplain();
     }
 
-    // ---------------- SLIT ----------------
+    // ---------------- SLIT SEPARATION ----------------
     void OnSlitSeparationChanged(float value)
     {
         int snapped = Mathf.Clamp(Mathf.RoundToInt(value), 1, 3);
         slitSeparationSlider.SetValueWithoutNotify(snapped);
+
         ApplySlitSeparation(snapped);
 
+        ScaleArrowNormalized(
+            slitArrow,
+            slitArrowBaseZ,
+            slitArrowMultiplier,
+            slitSeparationSlider
+        );
     }
 
     void ApplySlitSeparation(int step)
@@ -172,8 +203,26 @@ public class Scene4_UIManager : MonoBehaviour
             case 2: wavelengthLayout.spacing = 0.2f; break;
             case 3: wavelengthLayout.spacing = 0.1f; break;
         }
-        AudioManager.Instance.PlayslitSeperationExplaine();
 
+        AudioManager.Instance.PlayslitSeperationExplaine();
+    }
+
+    // ---------------- ARROW SCALING (CORRECT) ----------------
+    void ScaleArrowNormalized(
+        Transform arrow,
+        float baseZ,
+        float multiplier,
+        Slider slider
+    )
+    {
+        if (!arrow) return;
+
+        float t = (slider.value - slider.minValue) /
+                  (slider.maxValue - slider.minValue);
+
+        Vector3 scale = arrow.localScale;
+        scale.z = baseZ * (1f + t * multiplier);
+        arrow.localScale = scale;
     }
 
     // ---------------- HELPERS ----------------
