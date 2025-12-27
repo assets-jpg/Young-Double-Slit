@@ -35,7 +35,7 @@ public class Scene2_UIManager : MonoBehaviour
     void Start()
     {
         DisableAllPrompts();
-        SetState(Scene2State.Title);
+        SetState(Scene2State.PickupDoubleSlit);
     }
 
     void SetState(Scene2State newState)
@@ -45,9 +45,7 @@ public class Scene2_UIManager : MonoBehaviour
 
         switch (currentState)
         {
-            case Scene2State.Title:
-                StartCoroutine(TitleRoutine());
-                break;
+            
 
             case Scene2State.PickupDoubleSlit:
                 pickupSlitPromptUI.SetActive(true);
@@ -90,20 +88,7 @@ public class Scene2_UIManager : MonoBehaviour
 
     }
 
-    IEnumerator TitleRoutine()
-    {
-        yield return new WaitForSeconds(4f);
-
-        titleObject.SetActive(true);
-        AudioManager.Instance.PlayIntro();
-
-        yield return new WaitForSeconds(titleDuration);
-
-        titleObject.SetActive(false);
-
-        // 🚀 FIRST ACTION IS NOW INSERT SLIT
-        SetState(Scene2State.PickupDoubleSlit);
-    }
+  
 
     void DisableAllPrompts()
     {
@@ -112,11 +97,7 @@ public class Scene2_UIManager : MonoBehaviour
         if (observePatternPromptUI) observePatternPromptUI.SetActive(false);
     }
 
-    /* =======================
-     *  EVENTS FROM GAMEPLAY
-     * ======================= */
-
-    // 🧲 Double slit placed in holder
+ 
 
     public void OnDoubleSlitPicked()
     {

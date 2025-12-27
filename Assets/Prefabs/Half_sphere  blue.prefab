@@ -93,8 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42dcca38575c28247820fe2664b55da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveSphere
-  expandSpeed: 0.2
-  lifeTime: 2
+  expandSpeed: 0.3
+  lifeTime: 3
   fadeInTime: 0.4
   fadeOutTime: 0.6
   maxAlpha: 0.2

@@ -23,9 +23,52 @@ public class AudioManager : MonoBehaviour
     public AudioClip constructiveInterference;
     public AudioClip destructiveInterference;
     public AudioClip followHologram;
+    public AudioClip scene4Intro;
+    public AudioClip waveLengthIntro;
+    public AudioClip waveLengthExplain;
+    public AudioClip distanceIntro;
+    public AudioClip distanceExplain;
+    public AudioClip slitseperationIntro;
+    public AudioClip slitSeperationExplaine;
+    public AudioClip summeryIntro;
+    public AudioClip FormulaExplain;
 
-
-
+    public void Playscene4Intro()
+    {
+        PlayVO(scene4Intro);
+    }
+    public void PlaywaveLengthIntro()
+    {
+        PlayVO(waveLengthIntro);
+    }
+    public void PlaywaveLengthExplain()
+    {
+        PlayVO(waveLengthExplain);
+    }
+    public void PlaydistanceIntro()
+    {
+        PlayVO(distanceIntro);
+    }
+    public void PlaydistanceExplain()
+    {
+        PlayVO(distanceExplain);
+    }
+    public void PlayslitseperationIntro()
+    {
+        PlayVO(slitseperationIntro);
+    }
+    public void PlayslitSeperationExplaine()
+    {
+        PlayVO(slitSeperationExplaine);
+    }
+    public void PlaysummeryIntro()
+    {
+        PlayVO(summeryIntro);
+    }
+    public void PlayFormulaExplain()
+    {
+        PlayVO(FormulaExplain);
+    }
 
 
     void Awake()
@@ -107,6 +150,7 @@ public class AudioManager : MonoBehaviour
     {
         PlayVO(followHologram);
     }
+   
 
 
 

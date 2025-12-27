@@ -1372,8 +1372,8 @@ Transform:
   m_GameObject: {fileID: 804846101}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 418.7, y: 226.39, z: -17.32}
-  m_LocalScale: {x: 1, y: 1.429734, z: 1.277696}
+  m_LocalPosition: {x: 418.7, y: 226.39, z: -27.2}
+  m_LocalScale: {x: 1, y: 1.429734, z: 1.3799118}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 492467914}
@@ -1947,55 +1947,55 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.879999
+      value: -1.27
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.399987
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.42874682
+      value: 0.40480205
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5591467
+      value: 0.5767536
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5628183
+      value: -0.5802759
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.4321651
+      value: -0.40837544
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 15
+      value: -0.401
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90.415
+      value: -109.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.04
+      value: -89.933
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -3458,6 +3458,15 @@ MonoBehaviour:
   constructiveInterference: {fileID: 0}
   destructiveInterference: {fileID: 0}
   followHologram: {fileID: 0}
+  scene4Intro: {fileID: 0}
+  waveLengthIntro: {fileID: 0}
+  waveLengthExplain: {fileID: 0}
+  distanceIntro: {fileID: 0}
+  distanceExplain: {fileID: 0}
+  slitseperationIntro: {fileID: 0}
+  slitSeperationExplaine: {fileID: 0}
+  summeryIntro: {fileID: 0}
+  FormulaExplain: {fileID: 0}
 --- !u!1 &1830461097
 GameObject:
   m_ObjectHideFlags: 0
@@ -27403,7 +27412,7 @@ MonoBehaviour:
   flameIgnitePoint: 0.4
   candleLight: {fileID: 272965671}
   lightCone: {fileID: 1083066476}
-  beamMaxScale: 1.7
+  beamMaxScale: 365
   beamGrowTime: 1.2
   wallPattern: {fileID: 180343788}
 --- !u!4 &6549057359490350679
@@ -27947,7 +27956,7 @@ MonoBehaviour:
   m_MinAngle: 0
   m_AngleIncrement: 0
   m_PositionTrackedRadius: 0.025
-  m_TwistSensitivity: 1
+  m_TwistSensitivity: 1.54
   m_OnValueChange:
     m_PersistentCalls:
       m_Calls: []

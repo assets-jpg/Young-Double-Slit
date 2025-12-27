@@ -72,7 +72,7 @@ public class Scene3_UIManager : MonoBehaviour
                 doubleSlitPanel.SetActive(true);
                 interferenceFringePanel.SetActive(true);
                 AudioManager.Instance.PlayTwoSlitsTwoWaves();
-                ActivateHologramAfterDelay(hologram1, 20f);
+                ActivateHologramAfterDelay(hologram1, 15f);
                 break;
 
             case Scene3State.InterferenceIntro:
@@ -150,7 +150,7 @@ public class Scene3_UIManager : MonoBehaviour
 
     void DisableAll()
     {
-        wavePanel?.SetActive(false);
+       // wavePanel?.SetActive(false);
         doubleSlitPanel?.SetActive(false);
         interferenceFringePanel?.SetActive(false);
         signWavesPanel?.SetActive(false);

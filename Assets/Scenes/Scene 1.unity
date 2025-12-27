@@ -2480,6 +2480,15 @@ MonoBehaviour:
   constructiveInterference: {fileID: 8300000, guid: 0bad06629f3697e4f9236450a59dc35d, type: 3}
   destructiveInterference: {fileID: 8300000, guid: ad5999debdfab39489ae8b6d9bf8ba04, type: 3}
   followHologram: {fileID: 8300000, guid: 73be5b2ca03ff004d82ff051dbe32c5c, type: 3}
+  scene4Intro: {fileID: 8300000, guid: a1ea1c7ac9441924f9476a90ddddfa51, type: 3}
+  waveLengthIntro: {fileID: 8300000, guid: d63ef296dbfc07f448a4475640e39863, type: 3}
+  waveLengthExplain: {fileID: 8300000, guid: cc82dceea28f34d45923ae895f736b27, type: 3}
+  distanceIntro: {fileID: 8300000, guid: 61cf0f630af1bbe468076a231ac95315, type: 3}
+  distanceExplain: {fileID: 8300000, guid: c7ee30807f1578f489d5d180554d6a92, type: 3}
+  slitseperationIntro: {fileID: 8300000, guid: 531ee4baf165d5544acfd2bdd629c80b, type: 3}
+  slitSeperationExplaine: {fileID: 8300000, guid: b9ef682da1e58394986eb3e3b39eef35, type: 3}
+  summeryIntro: {fileID: 8300000, guid: f7e65b4730f5eea4b818e52356154621, type: 3}
+  FormulaExplain: {fileID: 8300000, guid: b3b288ca6c012e3408c0c9a6b41f4c5e, type: 3}
 --- !u!1 &1861029421
 GameObject:
   m_ObjectHideFlags: 0

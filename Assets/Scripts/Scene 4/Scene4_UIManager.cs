@@ -1,20 +1,32 @@
-﻿    using UnityEngine;
-    using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
-    public class Scene4_UIManager : MonoBehaviour
-    {
-        [Header("Wavelength Slider")]
-        public Slider wavelengthSlider;
-        public Image wavelengthHandle;   // knob image
+public class Scene4_UIManager : MonoBehaviour
+{
+    // ---------------- UI ----------------
+    [Header("Slider panel ")]
+    public GameObject SliderPanel;
 
-        [Header("Light / Wave Material")]
-        public Material wavelengthMaterial;
-    [Header("UI Layout")]
-    public VerticalLayoutGroup wavelengthLayout;
+
+    [Header("Wavelength Slider")]
+    public Slider wavelengthSlider;
+    public Image wavelengthHandle;
 
     [Header("Distance Slider")]
     public Slider distanceSlider;
+
+    [Header("Slit Separation Slider")]
+    public Slider slitSeparationSlider;
+
+    [Header("Next Button")]
+    public Button nextButton;
+
+    // ---------------- VISUALS ----------------
+    [Header("Light / Wave Material")]
+    public Material wavelengthMaterial;
+
+    [Header("UI Layout")]
+    public VerticalLayoutGroup wavelengthLayout;
 
     [Header("Projection Panel")]
     public Transform projectionPanel;
@@ -27,101 +39,167 @@ using static UnityEngine.Rendering.DebugUI;
     public float minSpacing = 0.1f;
     public float maxSpacing = 0.3f;
 
+    [Header("Slit GameObjects")]
+    public GameObject slit1;
+    public GameObject slit2;
+    public GameObject slit3;
 
+    // ---------------- STATE ----------------
+    enum UIStage
+    {
+        Wavelength,
+        Distance,
+        Slit
+    }
+
+    UIStage currentStage = UIStage.Wavelength;
+
+    bool wavelengthTouched = false;
+    bool distanceTouched = false;
+
+    // ---------------- START ----------------
     void Start()
-        {
-
-            wavelengthSlider.onValueChanged.AddListener(OnWavelengthChanged);
+    {
+        // Slider listeners
+        wavelengthSlider.onValueChanged.AddListener(OnWavelengthChanged);
         distanceSlider.onValueChanged.AddListener(OnDistanceChanged);
-        SnapAndApply(1);
+        slitSeparationSlider.onValueChanged.AddListener(OnSlitSeparationChanged);
+
+        // Next button
+        nextButton.onClick.AddListener(OnNextClicked);
+
+        // Initial UI state
+        wavelengthSlider.interactable = true;
+        distanceSlider.interactable = false;
+        slitSeparationSlider.interactable = false;
+        nextButton.interactable = false;
+        AudioManager.Instance.Playscene4Intro();
+        Invoke(nameof(SliderPanelAppear), 10f);
 
     }
+
+    public void SliderPanelAppear()
+    {
+        SliderPanel.SetActive(true);
+        AudioManager.Instance.PlaywaveLengthIntro();
+
+    }
+
+    // ---------------- NEXT BUTTON ----------------
+    void OnNextClicked()
+    {
+        nextButton.interactable = false;
+
+        switch (currentStage)
+        {
+            case UIStage.Wavelength:
+                currentStage = UIStage.Distance;
+                distanceSlider.interactable = true;
+                AudioManager.Instance.PlaydistanceIntro();
+
+                break;
+
+            case UIStage.Distance:
+                currentStage = UIStage.Slit;
+                slitSeparationSlider.interactable = true;
+                AudioManager.Instance.PlayslitseperationIntro();
+
+                break;
+        }
+    }
+
+    // ---------------- WAVELENGTH ----------------
+    void OnWavelengthChanged(float value)
+    {
+        SnapAndApply(value);
+
+        if (!wavelengthTouched)
+        {
+            wavelengthTouched = true;
+            nextButton.interactable = true;
+        }
+
+        switch (Mathf.RoundToInt(value))
+        {
+            case 1: wavelengthLayout.spacing = 0.1f; break;
+            case 2: wavelengthLayout.spacing = 0.2f; break;
+            case 3: wavelengthLayout.spacing = 0.3f; break;
+        }
+        AudioManager.Instance.PlaywaveLengthExplain();
+
+    }
+
+    // ---------------- DISTANCE ----------------
     void OnDistanceChanged(float value)
     {
-        // Move projection panel (Z axis)
         float xPos = Mathf.Lerp(minDistance, maxDistance, value);
         projectionPanel.localPosition = new Vector3(
             xPos,
             projectionPanel.localPosition.y,
-              projectionPanel.localPosition.z
+            projectionPanel.localPosition.z
         );
 
-        // Change UI spacing
         float spacing = Mathf.Lerp(minSpacing, maxSpacing, value);
         wavelengthLayout.spacing = spacing;
 
-        // Force UI refresh
-        //LayoutRebuilder.ForceRebuildLayoutImmediate(
-        //    wavelengthLayout.GetComponent<RectTransform>()
-        //);
+        if (!distanceTouched && currentStage == UIStage.Distance)
+        {
+            distanceTouched = true;
+            nextButton.interactable = true;
+        }
+        AudioManager.Instance.PlaydistanceExplain();
+
     }
 
-    void OnWavelengthChanged(float value)
+    // ---------------- SLIT ----------------
+    void OnSlitSeparationChanged(float value)
+    {
+        int snapped = Mathf.Clamp(Mathf.RoundToInt(value), 1, 3);
+        slitSeparationSlider.SetValueWithoutNotify(snapped);
+        ApplySlitSeparation(snapped);
+
+    }
+
+    void ApplySlitSeparation(int step)
+    {
+        slit1.SetActive(step == 1);
+        slit2.SetActive(step == 2);
+        slit3.SetActive(step == 3);
+
+        switch (step)
         {
-            SnapAndApply(value);
+            case 1: wavelengthLayout.spacing = 0.3f; break;
+            case 2: wavelengthLayout.spacing = 0.2f; break;
+            case 3: wavelengthLayout.spacing = 0.1f; break;
         }
+        AudioManager.Instance.PlayslitSeperationExplaine();
 
+    }
 
-        void SnapAndApply(float value)
+    // ---------------- HELPERS ----------------
+    void SnapAndApply(float value)
+    {
+        int snappedValue = Mathf.Clamp(Mathf.RoundToInt(value), 1, 3);
+        wavelengthSlider.SetValueWithoutNotify(snappedValue);
+
+        switch (snappedValue)
         {
-            int snappedValue = Mathf.RoundToInt(value);
-            snappedValue = Mathf.Clamp(snappedValue, 1, 3);
-
-            wavelengthSlider.SetValueWithoutNotify(snappedValue);
-
-            switch (snappedValue)
-            {
-                case 1:
-                    ApplyColor(Color.blue);
-                    break;
-
-                case 2:
-                    ApplyColor(Color.green);
-                    break;
-
-                case 3:
-                    ApplyColor(Color.red);
-                    break;
-            }
+            case 1: ApplyColor(Color.blue); break;
+            case 2: ApplyColor(Color.green); break;
+            case 3: ApplyColor(Color.red); break;
         }
-
-
+    }
 
     void ApplyColor(Color color)
     {
-        // Knob color
         wavelengthHandle.color = color;
 
-        if (wavelengthMaterial != null)
-        {
-            // ---------- EMISSION ----------
-            wavelengthMaterial.EnableKeyword("_EMISSION");
+        if (!wavelengthMaterial) return;
 
-            Color emissionColor = color * 2.5f;
-            wavelengthMaterial.SetColor("_EmissionColor", emissionColor);
+        wavelengthMaterial.EnableKeyword("_EMISSION");
+        wavelengthMaterial.SetColor("_EmissionColor", color * 2.5f);
 
-            // ---------- SPECULAR ----------
-            Color specularColor = Color.Lerp(Color.white, color, 0.6f);
-            wavelengthMaterial.SetColor("_SpecColor", specularColor);
-        }
-
-        // ---------- UI LAYOUT SPACING ----------
-        if (wavelengthLayout != null)
-        {
-            if (color == Color.red)
-                wavelengthLayout.spacing = 0.1f;
-            else if (color == Color.green)
-                wavelengthLayout.spacing = 0.15f;
-            else if (color == Color.blue)
-                wavelengthLayout.spacing = 0.2f;
-
-            // Force layout refresh
-            LayoutRebuilder.ForceRebuildLayoutImmediate(
-                wavelengthLayout.GetComponent<RectTransform>()
-            );
-        }
+        Color specular = Color.Lerp(Color.white, color, 0.6f);
+        wavelengthMaterial.SetColor("_SpecColor", specular);
     }
-
-
-
 }
