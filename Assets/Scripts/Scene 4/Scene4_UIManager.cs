@@ -20,6 +20,10 @@ public class Scene4_UIManager : MonoBehaviour
     [Header("Next Button")]
     public Button nextButton;
 
+    // ---------------- FORMULA ----------------
+    [Header("Formula")]
+    public GameObject FormulaPanel;
+
     // ---------------- VISUALS ----------------
     [Header("Light / Wave Material")]
     public Material wavelengthMaterial;
@@ -67,6 +71,13 @@ public class Scene4_UIManager : MonoBehaviour
 
     bool wavelengthTouched = false;
     bool distanceTouched = false;
+    bool slitTouched = false;
+
+    bool wavelengthExplainPlayed = false;
+    bool distanceExplainPlayed = false;
+    bool slitExplainPlayed = false;
+
+    bool allSlidersExplored = false;
 
     // ---------------- START ----------------
     void Start()
@@ -82,7 +93,10 @@ public class Scene4_UIManager : MonoBehaviour
         slitSeparationSlider.interactable = false;
         nextButton.interactable = false;
 
-        // Store BASE scales ONCE
+        if (FormulaPanel)
+
+            FormulaPanel.SetActive(false);
+
         if (wavelengthArrow) wavelengthArrowBaseZ = wavelengthArrow.localScale.z;
         if (distanceArrow) distanceArrowBaseZ = distanceArrow.localScale.z;
         if (slitArrow) slitArrowBaseZ = slitArrow.localScale.z;
@@ -115,6 +129,13 @@ public class Scene4_UIManager : MonoBehaviour
                 slitSeparationSlider.interactable = true;
                 AudioManager.Instance.PlayslitseperationIntro();
                 break;
+
+            case UIStage.Slit:
+                if (allSlidersExplored && FormulaPanel)
+                    SliderPanel.SetActive(false);
+
+                FormulaPanel.SetActive(true);
+                break;
         }
     }
 
@@ -129,13 +150,6 @@ public class Scene4_UIManager : MonoBehaviour
             nextButton.interactable = true;
         }
 
-        ScaleArrowNormalized(
-            wavelengthArrow,
-            wavelengthArrowBaseZ,
-            wavelengthArrowMultiplier,
-            wavelengthSlider
-        );
-
         switch (Mathf.RoundToInt(value))
         {
             case 1: wavelengthLayout.spacing = 0.1f; break;
@@ -143,7 +157,13 @@ public class Scene4_UIManager : MonoBehaviour
             case 3: wavelengthLayout.spacing = 0.3f; break;
         }
 
-        AudioManager.Instance.PlaywaveLengthExplain();
+        UpdateWavelengthArrowFromSpacing();
+
+        if (!wavelengthExplainPlayed)
+        {
+            wavelengthExplainPlayed = true;
+            AudioManager.Instance.PlaywaveLengthExplain();
+        }
     }
 
     // ---------------- DISTANCE ----------------
@@ -156,8 +176,7 @@ public class Scene4_UIManager : MonoBehaviour
             projectionPanel.localPosition.z
         );
 
-        float spacing = Mathf.Lerp(minSpacing, maxSpacing, value);
-        wavelengthLayout.spacing = spacing;
+        wavelengthLayout.spacing = Mathf.Lerp(minSpacing, maxSpacing, value);
 
         ScaleArrowNormalized(
             distanceArrow,
@@ -166,16 +185,22 @@ public class Scene4_UIManager : MonoBehaviour
             distanceSlider
         );
 
+        UpdateWavelengthArrowFromSpacing();
+
         if (!distanceTouched && currentStage == UIStage.Distance)
         {
             distanceTouched = true;
             nextButton.interactable = true;
         }
 
-        AudioManager.Instance.PlaydistanceExplain();
+        if (!distanceExplainPlayed)
+        {
+            distanceExplainPlayed = true;
+            AudioManager.Instance.PlaydistanceExplain();
+        }
     }
 
-    // ---------------- SLIT SEPARATION ----------------
+    // ---------------- SLIT ----------------
     void OnSlitSeparationChanged(float value)
     {
         int snapped = Mathf.Clamp(Mathf.RoundToInt(value), 1, 3);
@@ -189,6 +214,12 @@ public class Scene4_UIManager : MonoBehaviour
             slitArrowMultiplier,
             slitSeparationSlider
         );
+
+        if (!slitTouched && currentStage == UIStage.Slit)
+        {
+            slitTouched = true;
+            CheckAllSlidersExplored();
+        }
     }
 
     void ApplySlitSeparation(int step)
@@ -204,16 +235,27 @@ public class Scene4_UIManager : MonoBehaviour
             case 3: wavelengthLayout.spacing = 0.1f; break;
         }
 
-        AudioManager.Instance.PlayslitSeperationExplaine();
+        UpdateWavelengthArrowFromSpacing();
+
+        if (!slitExplainPlayed)
+        {
+            slitExplainPlayed = true;
+            AudioManager.Instance.PlayslitSeperationExplaine();
+        }
     }
 
-    // ---------------- ARROW SCALING (CORRECT) ----------------
-    void ScaleArrowNormalized(
-        Transform arrow,
-        float baseZ,
-        float multiplier,
-        Slider slider
-    )
+    // ---------------- CHECK ----------------
+    void CheckAllSlidersExplored()
+    {
+        if (wavelengthTouched && distanceTouched && slitTouched)
+        {
+            allSlidersExplored = true;
+            nextButton.interactable = true;
+        }
+    }
+
+    // ---------------- ARROWS ----------------
+    void ScaleArrowNormalized(Transform arrow, float baseZ, float multiplier, Slider slider)
     {
         if (!arrow) return;
 
@@ -223,6 +265,17 @@ public class Scene4_UIManager : MonoBehaviour
         Vector3 scale = arrow.localScale;
         scale.z = baseZ * (1f + t * multiplier);
         arrow.localScale = scale;
+    }
+
+    void UpdateWavelengthArrowFromSpacing()
+    {
+        if (!wavelengthArrow || !wavelengthLayout) return;
+
+        float t = Mathf.InverseLerp(minSpacing, maxSpacing, wavelengthLayout.spacing);
+
+        Vector3 scale = wavelengthArrow.localScale;
+        scale.z = wavelengthArrowBaseZ * (1f + t * wavelengthArrowMultiplier);
+        wavelengthArrow.localScale = scale;
     }
 
     // ---------------- HELPERS ----------------
@@ -247,8 +300,6 @@ public class Scene4_UIManager : MonoBehaviour
 
         wavelengthMaterial.EnableKeyword("_EMISSION");
         wavelengthMaterial.SetColor("_EmissionColor", color * 2.5f);
-
-        Color specular = Color.Lerp(Color.white, color, 0.6f);
-        wavelengthMaterial.SetColor("_SpecColor", specular);
+        wavelengthMaterial.SetColor("_SpecColor", Color.Lerp(Color.white, color, 0.6f));
     }
 }

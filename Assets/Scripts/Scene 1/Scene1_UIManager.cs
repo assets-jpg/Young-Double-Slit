@@ -73,7 +73,7 @@ public class Scene1_UIManager : MonoBehaviour
             case Scene1State.Completed:
                 objectPromptUI.SetActive(false);
                 AudioManager.Instance.PlayNatureOfLight();
-                Invoke(nameof(LoadNextScene), 25f);
+                Invoke(nameof(LoadNextScene), 20f);
 
                 break;
         }

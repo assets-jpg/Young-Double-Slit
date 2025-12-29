@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip natureOfLightClip;
     public AudioClip lighterClick;
     public AudioClip rotateObj;
+    public AudioClip pickUpDoubleSlit;
     public AudioClip metalClick;
     public AudioClip lampLightSource;
     public AudioClip placeDoubleSlit;
@@ -33,6 +34,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip summeryIntro;
     public AudioClip FormulaExplain;
 
+    public void PlayPickUpDoubleSlit()
+    {
+        PlayVO(pickUpDoubleSlit);
+    }
     public void Playscene4Intro()
     {
         PlayVO(scene4Intro);

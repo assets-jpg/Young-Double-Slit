@@ -50,6 +50,8 @@ public class Scene2_UIManager : MonoBehaviour
             case Scene2State.PickupDoubleSlit:
                 pickupSlitPromptUI.SetActive(true);
                 slitPlateHighlighter.enabled = true;
+                AudioManager.Instance.PlayPickUpDoubleSlit();
+
                 break;
 
             // 🔹 STEP 1 — Insert double slit
