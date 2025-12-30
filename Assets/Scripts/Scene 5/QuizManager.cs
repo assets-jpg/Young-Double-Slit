@@ -9,6 +9,7 @@ public class QuizManager : MonoBehaviour
     public TextMeshProUGUI questionText;
     public TextMeshProUGUI conclusionText;   // 👈 NEW
     public Button[] optionButtons;
+    public GameObject underlineUI;
 
     [Header("Colors")]
     public Color correctColor = new Color(0.2f, 0.8f, 0.2f, 1f);
@@ -91,7 +92,7 @@ public class QuizManager : MonoBehaviour
 
     IEnumerator NextQuestionAfterDelay()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(6f);
 
         currentQuestionIndex++;
 
@@ -105,6 +106,7 @@ public class QuizManager : MonoBehaviour
     {
         // Hide question + options
         questionText.gameObject.SetActive(false);
+        underlineUI.gameObject.SetActive(false);
 
         foreach (Button b in optionButtons)
             b.gameObject.SetActive(false);

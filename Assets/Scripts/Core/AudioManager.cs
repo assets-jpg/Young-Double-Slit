@@ -24,6 +24,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip constructiveInterference;
     public AudioClip destructiveInterference;
     public AudioClip followHologram;
+    public AudioClip scene3to4VO;
+
     public AudioClip scene4Intro;
     public AudioClip waveLengthIntro;
     public AudioClip waveLengthExplain;
@@ -32,8 +34,18 @@ public class AudioManager : MonoBehaviour
     public AudioClip slitseperationIntro;
     public AudioClip slitSeperationExplaine;
     public AudioClip summeryIntro;
-    public AudioClip FormulaExplain;
+    public AudioClip formulaExplain;
+    public AudioClip formulaConslusion;
 
+
+    public void Playscene3to4VO()
+    {
+        PlayVO(scene3to4VO);
+    }
+    public void PlayFormulaConslusion()
+    {
+        PlayVO(formulaConslusion);
+    }
     public void PlayPickUpDoubleSlit()
     {
         PlayVO(pickUpDoubleSlit);
@@ -72,7 +84,7 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayFormulaExplain()
     {
-        PlayVO(FormulaExplain);
+        PlayVO(formulaExplain);
     }
 
 

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class FormulaAnimation : MonoBehaviour
@@ -10,19 +10,19 @@ public class FormulaAnimation : MonoBehaviour
     public float fadeDuration = 0.5f;
     public float intervalBetween = 0.5f;
 
-  
+    [Header("After Animation")]
+    public float delayBeforeSceneLoad = 5f;
+
     private void OnEnable()
     {
         AudioManager.Instance.PlaysummeryIntro();
         Invoke(nameof(PlayAnimation), 3f);
     }
 
-   public void  PlayAnimation()
+    public void PlayAnimation()
     {
         InitializeObjects();
         StartCoroutine(PlayFormulaAnimation());
-        
-
     }
 
     // ---------------- INITIAL SETUP ----------------
@@ -56,15 +56,17 @@ public class FormulaAnimation : MonoBehaviour
 
             yield return new WaitForSeconds(intervalBetween);
         }
+
+        // ✅ WAIT 5 SECONDS AFTER ANIMATION COMPLETES
+        AudioManager.Instance.PlayFormulaConslusion();
+
+        yield return new WaitForSeconds(delayBeforeSceneLoad);
+        // ✅ LOAD NEXT SCENE
+        GameManager.Instance.LoadScene("Scene 5");
     }
 
     // ---------------- FADE LOGIC ----------------
-    IEnumerator FadeCanvasGroup(
-        CanvasGroup cg,
-        float from,
-        float to,
-        float duration
-    )
+    IEnumerator FadeCanvasGroup(CanvasGroup cg, float from, float to, float duration)
     {
         float t = 0f;
 

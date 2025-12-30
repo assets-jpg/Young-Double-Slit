@@ -174,6 +174,13 @@ public class Scene3_UIManager : MonoBehaviour
             SetState(Scene3State.InterferenceIntro);
     }
 
+    public void HologramTwoTouch()
+    {
+        AudioManager.Instance.Playscene3to4VO();
+
+        Invoke(nameof(OnComplete), 8f);
+    }
+
     public void OnComplete()
     {
         SetState(Scene3State.Completed);
