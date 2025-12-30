@@ -92,7 +92,7 @@ public class QuizManager : MonoBehaviour
 
     IEnumerator NextQuestionAfterDelay()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(4f);
 
         currentQuestionIndex++;
 
