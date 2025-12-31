@@ -36,8 +36,14 @@ public class AudioManager : MonoBehaviour
     public AudioClip summeryIntro;
     public AudioClip formulaExplain;
     public AudioClip formulaConslusion;
+    public AudioClip beginExperiment;
+    public AudioClip exploreInterefence;
 
 
+    public void PlayExploreInterefence()
+    {
+        PlayVO(exploreInterefence);
+    }
     public void Playscene3to4VO()
     {
         PlayVO(scene3to4VO);
@@ -85,6 +91,10 @@ public class AudioManager : MonoBehaviour
     public void PlayFormulaExplain()
     {
         PlayVO(formulaExplain);
+    }
+    public void PlayBeginExperiment()
+    {
+        PlayVO(beginExperiment);
     }
 
 

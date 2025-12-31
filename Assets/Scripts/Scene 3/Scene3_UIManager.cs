@@ -35,7 +35,12 @@ public class Scene3_UIManager : MonoBehaviour
     private bool destructiveExplored = false;
     private bool nextHologramCalled = false;
 
-    void Start()
+    private void Start()
+    {
+        AudioManager.Instance.PlayBeginExperiment();
+
+    }
+    public void Begin()
     {
         DisableAll();
         SetState(Scene3State.WaveNature);
@@ -73,6 +78,7 @@ public class Scene3_UIManager : MonoBehaviour
                 interferenceFringePanel.SetActive(true);
                 AudioManager.Instance.PlayTwoSlitsTwoWaves();
                 ActivateHologramAfterDelay(hologram1, 15f);
+
                 break;
 
             case Scene3State.InterferenceIntro:
@@ -81,6 +87,7 @@ public class Scene3_UIManager : MonoBehaviour
                 interferenceFringePanel.SetActive(true);
 
                 AudioManager.Instance.PlayWaveInterferenceIntro();
+                AudioManager.Instance.PlayExploreInterefence();
                 break;
 
             case Scene3State.Completed:
@@ -102,6 +109,7 @@ public class Scene3_UIManager : MonoBehaviour
     IEnumerator ActivateAfterDelay(GameObject hologram, float delay)
     {
         yield return new WaitForSeconds(delay);
+       
         hologram.SetActive(true);
     }
 
@@ -178,7 +186,7 @@ public class Scene3_UIManager : MonoBehaviour
     {
         AudioManager.Instance.Playscene3to4VO();
 
-        Invoke(nameof(OnComplete), 8f);
+        Invoke(nameof(OnComplete), 6f);
     }
 
     public void OnComplete()

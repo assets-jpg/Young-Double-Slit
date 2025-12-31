@@ -2,14 +2,20 @@
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class QuizManager : MonoBehaviour
 {
     [Header("UI References")]
     public TextMeshProUGUI questionText;
-    public TextMeshProUGUI conclusionText;   // 👈 NEW
+    public TextMeshProUGUI conclusionText;
     public Button[] optionButtons;
     public GameObject underlineUI;
+
+    [Header("Menu UI")]
+    public GameObject menuUI;
+    public Button resetButton;   // 👈 Repeat Experiment
+    public Button exitButton;     // 👈 Exit App
 
     [Header("Colors")]
     public Color correctColor = new Color(0.2f, 0.8f, 0.2f, 1f);
@@ -29,8 +35,11 @@ public class QuizManager : MonoBehaviour
 
     void Start()
     {
-        conclusionText.gameObject.SetActive(false); // hide at start
+        conclusionText.gameObject.SetActive(false);
+        menuUI.SetActive(false);
+
         SetupButtons();
+        SetupMenuButtons();
         ShowQuestion();
     }
 
@@ -43,6 +52,12 @@ public class QuizManager : MonoBehaviour
         }
     }
 
+    void SetupMenuButtons()
+    {
+        resetButton.onClick.AddListener(ResetExperiment);
+        exitButton.onClick.AddListener(ExitApplication);
+    }
+
     void ShowQuestion()
     {
         answered = false;
@@ -50,8 +65,12 @@ public class QuizManager : MonoBehaviour
         QuizQuestion q = questions[currentQuestionIndex];
         questionText.text = q.question;
 
+        questionText.gameObject.SetActive(true);
+        underlineUI.SetActive(true);
+
         for (int i = 0; i < optionButtons.Length; i++)
         {
+            optionButtons[i].gameObject.SetActive(true);
             optionButtons[i].interactable = true;
             optionButtons[i].image.color = normalColor;
 
@@ -71,7 +90,6 @@ public class QuizManager : MonoBehaviour
         foreach (Button b in optionButtons)
             b.interactable = false;
 
-        // Highlight correct answer
         optionButtons[q.correctIndex].image.color = correctColor;
 
         if (selectedIndex == q.correctIndex)
@@ -104,14 +122,12 @@ public class QuizManager : MonoBehaviour
 
     void EndQuiz()
     {
-        // Hide question + options
         questionText.gameObject.SetActive(false);
-        underlineUI.gameObject.SetActive(false);
+        underlineUI.SetActive(false);
 
         foreach (Button b in optionButtons)
             b.gameObject.SetActive(false);
 
-        // Show conclusion
         conclusionText.gameObject.SetActive(true);
         conclusionText.text =
             "Great work!\n\n" +
@@ -121,5 +137,33 @@ public class QuizManager : MonoBehaviour
 
         if (conclusionVO != null)
             audioSource.PlayOneShot(conclusionVO);
+
+        StartCoroutine(ActivateMenuAfterDelay(5f));
+    }
+
+    IEnumerator ActivateMenuAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        menuUI.SetActive(true);
+    }
+
+    // =========================
+    // MENU BUTTON FUNCTIONS
+    // =========================
+
+    public void ResetExperiment()
+    {
+        // 🔁 Full reset by reloading scene
+        print("reste game");
+        GameManager.Instance.LoadScene("Scene 1");
+    }
+
+    public void ExitApplication()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
     }
 }

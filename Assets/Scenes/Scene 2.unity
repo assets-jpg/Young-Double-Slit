@@ -1886,15 +1886,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 471.46
+      value: 365
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 471.46
+      value: 365
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 471.46
+      value: 365
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1910,19 +1910,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.4128646
+      value: 0.4365142
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.57099557
+      value: 0.5530966
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5745674
+      value: -0.5568125
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.41638845
+      value: -0.4398857
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1930,7 +1930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -108.2
+      value: -103.41
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -2046,55 +2046,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097384847}
   m_CullTransparentMesh: 1
---- !u!1 &1102397711
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1102397712}
-  - component: {fileID: 1102397713}
-  m_Layer: 0
-  m_Name: "Turn on the lamp.\u201D"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1102397712
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102397711}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.13}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1861029422}
-  m_Father: {fileID: 1330082697}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.812, y: 0.649}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1102397713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102397711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea4c1d2be7f60974abb448c01f238bd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BillboardToCamera
 --- !u!1 &1229909465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2572,7 +2523,7 @@ RectTransform:
   m_Children:
   - {fileID: 676926420}
   - {fileID: 1600788487}
-  - {fileID: 1102397712}
+  - {fileID: 1922651942}
   - {fileID: 865011031}
   m_Father: {fileID: 651257043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3002,6 +2953,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4c1d2be7f60974abb448c01f238bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BillboardToCamera
+--- !u!1 &1627251463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1627251464}
+  - component: {fileID: 1627251465}
+  m_Layer: 0
+  m_Name: Turn on the lamp.
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1627251464
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627251463}
+  m_LocalRotation: {x: -0, y: 0.9999424, z: -0, w: -0.010733539}
+  m_LocalPosition: {x: 0, y: 0, z: -0.518}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1861029422}
+  m_Father: {fileID: 1922651942}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.064, y: 0.64629626}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1627251465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627251463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea4c1d2be7f60974abb448c01f238bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardToCamera
 --- !u!1 &1752694273
 GameObject:
   m_ObjectHideFlags: 0
@@ -3046,11 +3046,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3ee3dd9e75ae045b890352f924c421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scene2_UIManager
-  titleObject: {fileID: 0}
-  titleDuration: 8
   pickupSlitPromptUI: {fileID: 676926419}
   insertSlitPromptUI: {fileID: 1600788486}
-  turnOnLampPromptUI: {fileID: 1102397711}
+  turnOnLampPromptUI: {fileID: 1922651941}
   observePatternPromptUI: {fileID: 865011030}
   slitHolderHighlighter: {fileID: 3469287837690618216}
   slitPlateHighlighter: {fileID: 5334037119147868985}
@@ -3225,6 +3223,8 @@ MonoBehaviour:
   summeryIntro: {fileID: 0}
   formulaExplain: {fileID: 0}
   formulaConslusion: {fileID: 0}
+  beginExperiment: {fileID: 0}
+  exploreInterefence: {fileID: 0}
 --- !u!1 &1830461097
 GameObject:
   m_ObjectHideFlags: 0
@@ -3284,16 +3284,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1861029421}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.028999984}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1102397712}
+  m_Father: {fileID: 1627251464}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.389}
-  m_SizeDelta: {x: 110, y: 50}
+  m_AnchoredPosition: {x: 0.080521226, y: -0.052}
+  m_SizeDelta: {x: 129.36, y: 42.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1861029423
 MonoBehaviour:
@@ -3315,7 +3315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Turn on the lamp.
+  m_text: Turn on the lamp by grabbing and rotating the highlighted handle.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ea11e727285496c4e8cedf6b0d91143b, type: 2}
   m_sharedMaterial: {fileID: 6945560430836849440, guid: ea11e727285496c4e8cedf6b0d91143b, type: 2}
@@ -3394,6 +3394,82 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1861029421}
+  m_CullTransparentMesh: 1
+--- !u!1 &1922651941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922651942}
+  - component: {fileID: 1922651945}
+  - component: {fileID: 1922651944}
+  m_Layer: 0
+  m_Name: "Turn on the lamp.\u201D"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1922651942
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922651941}
+  m_LocalRotation: {x: -0, y: -0.9999424, z: -0, w: -0.010733539}
+  m_LocalPosition: {x: 0, y: 0, z: -0.8656}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1627251464}
+  m_Father: {fileID: 1330082697}
+  m_LocalEulerAnglesHint: {x: 0, y: -181.23, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.78762686, y: -0.419295}
+  m_SizeDelta: {x: 0.08, y: 0.08}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1922651944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922651941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: e77694936d128054fa91864e9ecda0d2, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1922651945
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922651941}
   m_CullTransparentMesh: 1
 --- !u!1 &2008064851
 GameObject:

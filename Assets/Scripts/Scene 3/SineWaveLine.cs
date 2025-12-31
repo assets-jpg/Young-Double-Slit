@@ -5,7 +5,7 @@ public class SineWaveLine : MonoBehaviour
 {
     [Header("Line Shape")]
     public int points = 120;
-    public float lineLength = 2.55f;   // 🔥 controls how long the wave is
+    public float lineLength = 2.55f;   // Controls how long the wave is
 
     [Header("Wave Shape")]
     public float amplitude = 0.15f;
@@ -37,8 +37,9 @@ public class SineWaveLine : MonoBehaviour
         {
             float x = step * i;
 
+            // 🔁 Forward-moving wave (note the -time)
             float y = Mathf.Sin(
-                (x / wavelength) * Mathf.PI * 2f +
+                (x / wavelength) * Mathf.PI * 2f -
                 time +
                 phaseOffset
             ) * amplitude;

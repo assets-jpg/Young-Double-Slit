@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 715219448358188857}
   - component: {fileID: 133318171039709724}
   m_Layer: 0
-  m_Name: 'WaveSphere '
+  m_Name: WaveSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

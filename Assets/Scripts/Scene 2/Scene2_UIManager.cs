@@ -13,9 +13,7 @@ public enum Scene2State
 
 public class Scene2_UIManager : MonoBehaviour
 {
-    [Header("Title")]
-    public GameObject titleObject;
-    public float titleDuration = 8f;
+    
 
     [Header("Prompts (Already Designed UI)")]
     public GameObject pickupSlitPromptUI;
