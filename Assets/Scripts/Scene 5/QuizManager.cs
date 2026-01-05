@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+
 public class QuizManager : MonoBehaviour
 {
     [Header("UI References")]

@@ -62,8 +62,13 @@ public class Scene4_UIManager : MonoBehaviour
 
     // ---------------- BASE SCALES ----------------
     float wavelengthArrowBaseZ;
+    float wavelengthArrowBaseY;
+
     float distanceArrowBaseZ;
+    float distanceArrowBaseY;
+
     float slitArrowBaseZ;
+    float slitArrowBaseY;
 
     // ---------------- STATE ----------------
     enum UIStage { Wavelength, Distance, Slit }
@@ -94,12 +99,25 @@ public class Scene4_UIManager : MonoBehaviour
         nextButton.interactable = false;
 
         if (FormulaPanel)
-
             FormulaPanel.SetActive(false);
 
-        if (wavelengthArrow) wavelengthArrowBaseZ = wavelengthArrow.localScale.z;
-        if (distanceArrow) distanceArrowBaseZ = distanceArrow.localScale.z;
-        if (slitArrow) slitArrowBaseZ = slitArrow.localScale.z;
+        if (wavelengthArrow)
+        {
+            wavelengthArrowBaseZ = wavelengthArrow.localScale.z;
+            wavelengthArrowBaseY = wavelengthArrow.localScale.y;
+        }
+
+        if (distanceArrow)
+        {
+            distanceArrowBaseZ = distanceArrow.localScale.z;
+            distanceArrowBaseY = distanceArrow.localScale.y;
+        }
+
+        if (slitArrow)
+        {
+            slitArrowBaseZ = slitArrow.localScale.z;
+            slitArrowBaseY = slitArrow.localScale.y;
+        }
 
         AudioManager.Instance.Playscene4Intro();
         Invoke(nameof(SliderPanelAppear), 10f);
@@ -181,6 +199,7 @@ public class Scene4_UIManager : MonoBehaviour
         ScaleArrowNormalized(
             distanceArrow,
             distanceArrowBaseZ,
+            distanceArrowBaseY,
             distanceArrowMultiplier,
             distanceSlider
         );
@@ -211,6 +230,7 @@ public class Scene4_UIManager : MonoBehaviour
         ScaleArrowNormalized(
             slitArrow,
             slitArrowBaseZ,
+            slitArrowBaseY,
             slitArrowMultiplier,
             slitSeparationSlider
         );
@@ -255,7 +275,13 @@ public class Scene4_UIManager : MonoBehaviour
     }
 
     // ---------------- ARROWS ----------------
-    void ScaleArrowNormalized(Transform arrow, float baseZ, float multiplier, Slider slider)
+    void ScaleArrowNormalized(
+        Transform arrow,
+        float baseZ,
+        float baseY,
+        float multiplier,
+        Slider slider
+    )
     {
         if (!arrow) return;
 
@@ -264,6 +290,7 @@ public class Scene4_UIManager : MonoBehaviour
 
         Vector3 scale = arrow.localScale;
         scale.z = baseZ * (1f + t * multiplier);
+        scale.y = baseY * (1f + t * multiplier);
         arrow.localScale = scale;
     }
 
@@ -275,6 +302,7 @@ public class Scene4_UIManager : MonoBehaviour
 
         Vector3 scale = wavelengthArrow.localScale;
         scale.z = wavelengthArrowBaseZ * (1f + t * wavelengthArrowMultiplier);
+        scale.y = wavelengthArrowBaseY * (1f + t * wavelengthArrowMultiplier);
         wavelengthArrow.localScale = scale;
     }
 

@@ -24,6 +24,11 @@ public class Scene3_UIManager : MonoBehaviour
     [Header("Holograms")]
     public GameObject hologram1;
     public GameObject hologram2;
+    
+    [Header("Buttons Tap Indicator")]
+    public GameObject constructiveIndicator;
+    public GameObject desstructiveIndicator;
+
 
     [Header("Interference Settings")]
     public float nextHologramDelay = 10f;
@@ -124,6 +129,9 @@ public class Scene3_UIManager : MonoBehaviour
         constructiveExplored = true;
         CheckInterferenceCompletion();
         AudioManager.Instance.PlayConstructiveInterference();
+        constructiveIndicator.SetActive(false);
+        desstructiveIndicator.SetActive(true);
+
 
     }
 
@@ -134,6 +142,7 @@ public class Scene3_UIManager : MonoBehaviour
         destructiveExplored = true;
         CheckInterferenceCompletion();
         AudioManager.Instance.PlayDestructiveInterference();
+        desstructiveIndicator.SetActive(false);
 
     }
 

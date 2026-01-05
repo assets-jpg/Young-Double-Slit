@@ -1163,7 +1163,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 558468156}
   - {fileID: 136825411}
   m_Father: {fileID: 1330082697}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1179,14 +1178,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457387423}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.8156863}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
   m_OnCullStateChanged:
@@ -1551,18 +1550,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558468155}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.964}
   m_LocalScale: {x: 0.003, y: 0.003, z: 0.003}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 241785092}
   - {fileID: 573186272}
-  m_Father: {fileID: 457387424}
+  m_Father: {fileID: 1330082697}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -4.8900146, y: -0.2290039}
   m_SizeDelta: {x: 140, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &558468157
@@ -1674,7 +1673,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 457387423}
+      - m_Target: {fileID: 1330082696}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -2245,7 +2244,7 @@ GameObject:
   - component: {fileID: 864702110}
   - component: {fileID: 864702109}
   m_Layer: 0
-  m_Name: Tap Indicator Image (1)
+  m_Name: Constructive Tap Indicator Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2259,7 +2258,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864702107}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -21}
+  m_LocalPosition: {x: 0, y: 0, z: -21.2}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2267,8 +2266,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.1, y: 0}
-  m_SizeDelta: {x: 107.2, y: 55.4}
+  m_AnchoredPosition: {x: 0.4, y: 0}
+  m_SizeDelta: {x: 105, y: 53.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &864702109
 MonoBehaviour:
@@ -2283,7 +2282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TapIndicator
   minScale: 1.5
-  maxScale: 1.6
+  maxScale: 1.58
   speed: 2
 --- !u!114 &864702110
 MonoBehaviour:
@@ -2314,7 +2313,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1.5
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &864702111
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3412,18 +3411,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1976421505}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!222 &957524558
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4489,7 +4476,7 @@ GameObject:
   - component: {fileID: 1330082698}
   - component: {fileID: 1330082701}
   m_Layer: 0
-  m_Name: Word space canvas
+  m_Name: Begin button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4507,6 +4494,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 558468156}
   - {fileID: 457387424}
   m_Father: {fileID: 651257043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5503,6 +5491,8 @@ MonoBehaviour:
   interferenceController: {fileID: 510462873}
   hologram1: {fileID: 7515035223886413122}
   hologram2: {fileID: 1428502208}
+  constructiveIndicator: {fileID: 864702107}
+  desstructiveIndicator: {fileID: 1976421505}
   nextHologramDelay: 10
 --- !u!1 &1765476566
 GameObject:
@@ -5930,12 +5920,12 @@ GameObject:
   - component: {fileID: 1976421508}
   - component: {fileID: 1976421507}
   m_Layer: 0
-  m_Name: Tap Indicator Image (2)
+  m_Name: Destructive Tap Indicator Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1976421506
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5945,7 +5935,7 @@ RectTransform:
   m_GameObject: {fileID: 1976421505}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -21}
-  m_LocalScale: {x: 1.4999999, y: 1.5000001, z: 1.4999999}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 957524552}
@@ -5953,7 +5943,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 107.2, y: 55.4}
+  m_SizeDelta: {x: 105, y: 53.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1976421507
 MonoBehaviour:
@@ -5968,7 +5958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TapIndicator
   minScale: 1.5
-  maxScale: 1.6
+  maxScale: 1.58
   speed: 2
 --- !u!114 &1976421508
 MonoBehaviour:
@@ -5999,7 +5989,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1.5
+  m_PixelsPerUnitMultiplier: 2
 --- !u!222 &1976421509
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -60567,18 +60557,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Scene3_UIManager, Assembly-CSharp
         m_MethodName: SetConstructive
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 864702107}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
