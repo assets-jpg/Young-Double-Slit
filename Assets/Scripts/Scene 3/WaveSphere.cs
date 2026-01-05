@@ -17,7 +17,6 @@ public class WaveSphere : MonoBehaviour
     void Start()
     {
         mat = GetComponent<Renderer>().material;
-
         // Start invisible
         Color c = mat.color;
         c.a = 0f;
