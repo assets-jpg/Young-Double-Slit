@@ -1910,19 +1910,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.4365142
+      value: 0.43461657
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5530966
+      value: 0.55459046
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5568125
+      value: -0.55829495
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.4398857
+      value: -0.43800074
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1930,7 +1930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -103.41
+      value: -103.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1950,7 +1950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 39ddac24a2569b84487f8124e240032c, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3202,7 +3202,7 @@ MonoBehaviour:
   rotateObj: {fileID: 8300000, guid: ea7414a74f646884aa5ce0574ad2eaeb, type: 3}
   pickUpDoubleSlit: {fileID: 8300000, guid: 20089aa4a6b968549ae473792eae53dd, type: 3}
   metalClick: {fileID: 8300000, guid: 0f208ebc2d482714cb6456d44ae7b8ad, type: 3}
-  lampLightSource: {fileID: 8300000, guid: 389f40e5866db9241876e9e192330bcb, type: 3}
+  lampLightSource: {fileID: 8300000, guid: 4c1ed4e4642b9fe428a50d9d34be76ac, type: 3}
   placeDoubleSlit: {fileID: 8300000, guid: 06407776a865a9a439f5a79902bc47c5, type: 3}
   interferencePattern: {fileID: 8300000, guid: 019bfc88a6cbb944586aeaba2ab06d93, type: 3}
   labTransition: {fileID: 8300000, guid: 8d2b40142243ced41a26ab9673a29a5e, type: 3}

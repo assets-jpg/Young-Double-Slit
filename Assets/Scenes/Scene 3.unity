@@ -5653,6 +5653,7 @@ MonoBehaviour:
   constructiveInterference: {fileID: 8300000, guid: 0bad06629f3697e4f9236450a59dc35d, type: 3}
   destructiveInterference: {fileID: 8300000, guid: 941898c2397b6744aa3201073c451539, type: 3}
   followHologram: {fileID: 8300000, guid: 73be5b2ca03ff004d82ff051dbe32c5c, type: 3}
+  followHologram2: {fileID: 8300000, guid: b5d430ab92a19e14fa299b28b4ff0c2c, type: 3}
   scene3to4VO: {fileID: 8300000, guid: f9013f27538be8c459f12fb1cdecc189, type: 3}
   scene4Intro: {fileID: 0}
   waveLengthIntro: {fileID: 0}

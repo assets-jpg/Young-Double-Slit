@@ -9,11 +9,7 @@ public class HologramTrigger : MonoBehaviour
 
     private bool triggered = false;
 
-    private void OnEnable()
-    {
-        AudioManager.Instance.PlayFollowHologram();
-    }
-
+   
     private void OnTriggerEnter(Collider other)
     {
         if (triggered) return;

@@ -47,28 +47,17 @@ public class Scene4_UIManager : MonoBehaviour
     public GameObject slit2;
     public GameObject slit3;
 
-    // ---------------- ARROWS ----------------
-    [Header("Wavelength Arrow")]
-    public Transform wavelengthArrow;
+    // ---------------- DOUBLE ARROWS ----------------
+    [Header("Double Arrows")]
+    public DoubleArrowSingleParam wavelengthArrow;
+    public DoubleArrowSingleParam distanceArrow;
+    public DoubleArrowSingleParam slitArrow;
+
+    // ---------------- MULTIPLIERS ----------------
+    [Header("Arrow Multipliers")]
     public float wavelengthArrowMultiplier = 0.5f;
-
-    [Header("Distance Arrow")]
-    public Transform distanceArrow;
-    public float distanceArrowMultiplier = 0.5f;
-
-    [Header("Slit Separation Arrow")]
-    public Transform slitArrow;
-    public float slitArrowMultiplier = 0.5f;
-
-    // ---------------- BASE SCALES ----------------
-    float wavelengthArrowBaseZ;
-    float wavelengthArrowBaseY;
-
-    float distanceArrowBaseZ;
-    float distanceArrowBaseY;
-
-    float slitArrowBaseZ;
-    float slitArrowBaseY;
+    public float distanceArrowMultiplier = 1.5f;
+    public float slitArrowMultiplier = 1.0f;
 
     // ---------------- STATE ----------------
     enum UIStage { Wavelength, Distance, Slit }
@@ -100,24 +89,6 @@ public class Scene4_UIManager : MonoBehaviour
 
         if (FormulaPanel)
             FormulaPanel.SetActive(false);
-
-        if (wavelengthArrow)
-        {
-            wavelengthArrowBaseZ = wavelengthArrow.localScale.z;
-            wavelengthArrowBaseY = wavelengthArrow.localScale.y;
-        }
-
-        if (distanceArrow)
-        {
-            distanceArrowBaseZ = distanceArrow.localScale.z;
-            distanceArrowBaseY = distanceArrow.localScale.y;
-        }
-
-        if (slitArrow)
-        {
-            slitArrowBaseZ = slitArrow.localScale.z;
-            slitArrowBaseY = slitArrow.localScale.y;
-        }
 
         AudioManager.Instance.Playscene4Intro();
         Invoke(nameof(SliderPanelAppear), 10f);
@@ -153,6 +124,9 @@ public class Scene4_UIManager : MonoBehaviour
                     SliderPanel.SetActive(false);
 
                 FormulaPanel.SetActive(true);
+                ApplyColor(Color.red);
+
+
                 break;
         }
     }
@@ -175,7 +149,7 @@ public class Scene4_UIManager : MonoBehaviour
             case 3: wavelengthLayout.spacing = 0.3f; break;
         }
 
-        UpdateWavelengthArrowFromSpacing();
+        UpdateWavelengthArrow();
 
         if (!wavelengthExplainPlayed)
         {
@@ -196,15 +170,15 @@ public class Scene4_UIManager : MonoBehaviour
 
         wavelengthLayout.spacing = Mathf.Lerp(minSpacing, maxSpacing, value);
 
-        ScaleArrowNormalized(
-            distanceArrow,
-            distanceArrowBaseZ,
-            distanceArrowBaseY,
-            distanceArrowMultiplier,
-            distanceSlider
-        );
+        // Distance arrow
+        if (distanceArrow)
+        {
+            distanceArrow.lengthMultiplier =
+                1f + value * distanceArrowMultiplier;
+        }
 
-        UpdateWavelengthArrowFromSpacing();
+        // Wavelength ALSO reacts to distance (like old behavior)
+        UpdateWavelengthArrow();
 
         if (!distanceTouched && currentStage == UIStage.Distance)
         {
@@ -227,13 +201,14 @@ public class Scene4_UIManager : MonoBehaviour
 
         ApplySlitSeparation(snapped);
 
-        ScaleArrowNormalized(
-            slitArrow,
-            slitArrowBaseZ,
-            slitArrowBaseY,
-            slitArrowMultiplier,
-            slitSeparationSlider
-        );
+        if (slitArrow)
+        {
+            // Normalize AFTER snapping (1–3 → 0–1)
+            float t = Mathf.InverseLerp(1f, 3f, snapped);
+
+            // Map to 1–7
+            slitArrow.lengthMultiplier = Mathf.Lerp(1f, 7f, t);
+        }
 
         if (!slitTouched && currentStage == UIStage.Slit)
         {
@@ -241,6 +216,7 @@ public class Scene4_UIManager : MonoBehaviour
             CheckAllSlidersExplored();
         }
     }
+
 
     void ApplySlitSeparation(int step)
     {
@@ -255,13 +231,31 @@ public class Scene4_UIManager : MonoBehaviour
             case 3: wavelengthLayout.spacing = 0.1f; break;
         }
 
-        UpdateWavelengthArrowFromSpacing();
+        UpdateWavelengthArrow();
 
         if (!slitExplainPlayed)
         {
             slitExplainPlayed = true;
             AudioManager.Instance.PlayslitSeperationExplaine();
         }
+    }
+
+    // ---------------- WAVELENGTH ARROW (COMBINED LOGIC) ----------------
+    void UpdateWavelengthArrow()
+    {
+        if (!wavelengthArrow) return;
+
+        float spacingT =
+            Mathf.InverseLerp(minSpacing, maxSpacing, wavelengthLayout.spacing);
+
+        float distanceT = distanceSlider.value;
+
+        // Combine wavelength + distance influence
+        float combined =
+            (spacingT + distanceT) * 0.5f;
+
+        wavelengthArrow.lengthMultiplier =
+            1f + combined * wavelengthArrowMultiplier;
     }
 
     // ---------------- CHECK ----------------
@@ -272,38 +266,6 @@ public class Scene4_UIManager : MonoBehaviour
             allSlidersExplored = true;
             nextButton.interactable = true;
         }
-    }
-
-    // ---------------- ARROWS ----------------
-    void ScaleArrowNormalized(
-        Transform arrow,
-        float baseZ,
-        float baseY,
-        float multiplier,
-        Slider slider
-    )
-    {
-        if (!arrow) return;
-
-        float t = (slider.value - slider.minValue) /
-                  (slider.maxValue - slider.minValue);
-
-        Vector3 scale = arrow.localScale;
-        scale.z = baseZ * (1f + t * multiplier);
-        scale.y = baseY * (1f + t * multiplier);
-        arrow.localScale = scale;
-    }
-
-    void UpdateWavelengthArrowFromSpacing()
-    {
-        if (!wavelengthArrow || !wavelengthLayout) return;
-
-        float t = Mathf.InverseLerp(minSpacing, maxSpacing, wavelengthLayout.spacing);
-
-        Vector3 scale = wavelengthArrow.localScale;
-        scale.z = wavelengthArrowBaseZ * (1f + t * wavelengthArrowMultiplier);
-        scale.y = wavelengthArrowBaseY * (1f + t * wavelengthArrowMultiplier);
-        wavelengthArrow.localScale = scale;
     }
 
     // ---------------- HELPERS ----------------
@@ -329,5 +291,9 @@ public class Scene4_UIManager : MonoBehaviour
         wavelengthMaterial.EnableKeyword("_EMISSION");
         wavelengthMaterial.SetColor("_EmissionColor", color * 2.5f);
         wavelengthMaterial.SetColor("_SpecColor", Color.Lerp(Color.white, color, 0.6f));
+    }
+    private void OnDisable()
+    {
+        
     }
 }

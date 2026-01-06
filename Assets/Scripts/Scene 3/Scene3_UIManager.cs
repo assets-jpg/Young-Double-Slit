@@ -31,7 +31,7 @@ public class Scene3_UIManager : MonoBehaviour
 
 
     [Header("Interference Settings")]
-    public float nextHologramDelay = 10f;
+    public float nextHologramDelay = 5f;
 
     private Scene3State currentState;
 
@@ -90,7 +90,6 @@ public class Scene3_UIManager : MonoBehaviour
                 interferenceTypeUI.SetActive(true);
                 signWavesPanel.SetActive(true);
                 interferenceFringePanel.SetActive(true);
-
                 AudioManager.Instance.PlayWaveInterferenceIntro();
                 AudioManager.Instance.PlayExploreInterefence();
                 break;
@@ -116,6 +115,7 @@ public class Scene3_UIManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
        
         hologram.SetActive(true);
+        AudioManager.Instance.PlayFollowHologram();
     }
 
     /* =======================
@@ -159,6 +159,9 @@ public class Scene3_UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(nextHologramDelay);
         hologram2.SetActive(true);
+        AudioManager.Instance.PlayFollowHologram2();
+
+
     }
 
     /* =======================

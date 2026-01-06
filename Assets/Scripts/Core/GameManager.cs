@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,14 +18,28 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        Invoke(nameof(Recenter), 0.2f); // small delay is important
+    }
 
+    void Recenter()
+    {
+        List<XRInputSubsystem> subsystems = new List<XRInputSubsystem>();
+        SubsystemManager.GetSubsystems(subsystems);
+
+        foreach (var subsystem in subsystems)
+        {
+            if (subsystem.running)
+            {
+                subsystem.TryRecenter();
+            }
+        }
     }
 
     /* =======================
      *  SCENE CONTROL
      * ======================= */
 
-    // Load scene immediately (by name)
+        // Load scene immediately (by name)
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

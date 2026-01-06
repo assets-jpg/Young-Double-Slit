@@ -24,6 +24,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip constructiveInterference;
     public AudioClip destructiveInterference;
     public AudioClip followHologram;
+    public AudioClip followHologram2;
+
     public AudioClip scene3to4VO;
 
     public AudioClip scene4Intro;
@@ -38,7 +40,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip formulaConslusion;
     public AudioClip beginExperiment;
     public AudioClip exploreInterefence;
-
+    public void PlayFollowHologram2()
+    {
+        PlayVO(followHologram2);
+    }
 
     public void PlayExploreInterefence()
     {
