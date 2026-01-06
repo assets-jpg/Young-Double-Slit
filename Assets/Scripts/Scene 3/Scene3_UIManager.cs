@@ -130,9 +130,12 @@ public class Scene3_UIManager : MonoBehaviour
         CheckInterferenceCompletion();
         AudioManager.Instance.PlayConstructiveInterference();
         constructiveIndicator.SetActive(false);
-        desstructiveIndicator.SetActive(true);
 
-
+        // Only show destructive indicator if it hasn't been explored yet
+        if (!destructiveExplored)
+        {
+            desstructiveIndicator.SetActive(true);
+        }
     }
 
     public void SetDestructive()
@@ -142,9 +145,10 @@ public class Scene3_UIManager : MonoBehaviour
         destructiveExplored = true;
         CheckInterferenceCompletion();
         AudioManager.Instance.PlayDestructiveInterference();
-        desstructiveIndicator.SetActive(false);
 
+        desstructiveIndicator.SetActive(false);
     }
+
 
     void CheckInterferenceCompletion()
     {

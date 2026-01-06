@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: c3fd45eac33ad0a4197b59987eff6f57, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 0abf8a12a7cffeb4598a71541fd94d26, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -224,7 +224,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -263,7 +263,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
@@ -1704,6 +1704,7 @@ MonoBehaviour:
   constructiveInterference: {fileID: 8300000, guid: 0bad06629f3697e4f9236450a59dc35d, type: 3}
   destructiveInterference: {fileID: 8300000, guid: ad5999debdfab39489ae8b6d9bf8ba04, type: 3}
   followHologram: {fileID: 8300000, guid: 73be5b2ca03ff004d82ff051dbe32c5c, type: 3}
+  followHologram2: {fileID: 0}
   scene3to4VO: {fileID: 0}
   scene4Intro: {fileID: 8300000, guid: a1ea1c7ac9441924f9476a90ddddfa51, type: 3}
   waveLengthIntro: {fileID: 8300000, guid: d63ef296dbfc07f448a4475640e39863, type: 3}
