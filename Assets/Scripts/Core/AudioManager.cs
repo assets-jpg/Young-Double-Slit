@@ -12,12 +12,19 @@ public class AudioManager : MonoBehaviour
     public AudioClip natureOfLightClip;
     public AudioClip lighterClick;
     public AudioClip rotateObj;
+    public AudioClip woodHit;
+    [Header("Scene 2 Voice Overs")]
     public AudioClip pickUpDoubleSlit;
     public AudioClip metalClick;
+    public AudioClip metalPickup;
+    public AudioClip lampHandle;
+
     public AudioClip lampLightSource;
     public AudioClip placeDoubleSlit;
     public AudioClip interferencePattern;
     public AudioClip labTransition;
+    [Header("Scene 3 Voice Overs")]
+
     public AudioClip LightAsWave;
     public AudioClip TwoSlitsTwoWaves;
     public AudioClip InterferenceIntro;
@@ -43,6 +50,14 @@ public class AudioManager : MonoBehaviour
     public void PlayFollowHologram2()
     {
         PlayVO(followHologram2);
+    }
+    public void PlayLampHandle()
+    {
+        PlayVO(lampHandle);
+    }
+    public void PlayMetalPickup()
+    {
+        PlayVO(metalPickup);
     }
 
     public void PlayExploreInterefence()
@@ -182,7 +197,11 @@ public class AudioManager : MonoBehaviour
     {
         PlayVO(followHologram);
     }
-   
+    public void PlayWoodHit()
+    {
+        PlayVO(woodHit);
+    }
+
 
 
 
@@ -209,4 +228,5 @@ public class AudioManager : MonoBehaviour
     {
         return voiceSource && voiceSource.isPlaying;
     }
+
 }

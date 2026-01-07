@@ -2655,6 +2655,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1765476569}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayMetalPickup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -3200,8 +3212,11 @@ MonoBehaviour:
   natureOfLightClip: {fileID: 8300000, guid: d12d5e33a30028e42bfbf1066d7f8f1d, type: 3}
   lighterClick: {fileID: 8300000, guid: 16655f6b77e5fc149a04f4a1f644499d, type: 3}
   rotateObj: {fileID: 8300000, guid: ea7414a74f646884aa5ce0574ad2eaeb, type: 3}
+  woodHit: {fileID: 0}
   pickUpDoubleSlit: {fileID: 8300000, guid: 20089aa4a6b968549ae473792eae53dd, type: 3}
   metalClick: {fileID: 8300000, guid: 0f208ebc2d482714cb6456d44ae7b8ad, type: 3}
+  metalPickup: {fileID: 8300000, guid: f544c56bfd5e5b547ac9914b5554292e, type: 3}
+  lampHandle: {fileID: 8300000, guid: 3ab5b5e25b907d44a9fd3cc8c2d42808, type: 3}
   lampLightSource: {fileID: 8300000, guid: 4c1ed4e4642b9fe428a50d9d34be76ac, type: 3}
   placeDoubleSlit: {fileID: 8300000, guid: 06407776a865a9a439f5a79902bc47c5, type: 3}
   interferencePattern: {fileID: 8300000, guid: 019bfc88a6cbb944586aeaba2ab06d93, type: 3}
@@ -27923,7 +27938,19 @@ MonoBehaviour:
   m_TwistSensitivity: 1.54
   m_OnValueChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1765476569}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayLampHandle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!135 &7591150037885344955
 SphereCollider:
   m_ObjectHideFlags: 0

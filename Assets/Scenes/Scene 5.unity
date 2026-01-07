@@ -1508,14 +1508,6 @@ MonoBehaviour:
     - ' D. The lamp was too bright'
     correctIndex: 1
     correctVO: {fileID: 8300000, guid: f43ac7780b3a146469f1e3a5030c7024, type: 3}
-  - question: 'A bright fringe is formed when the path difference is:'
-    options:
-    - " A. (2n + 1) \u03BB / 2"
-    - ' B. Zero only'
-    - " C. n\u03BB"
-    - " D. 3\u03BB / 2"
-    correctIndex: 2
-    correctVO: {fileID: 8300000, guid: 01c108e0f2bdf0247a0c490488283da1, type: 3}
   - question: If we switch from blue light to red light, what happens to the fringe
       width?
     options:

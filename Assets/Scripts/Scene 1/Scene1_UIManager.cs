@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public enum Scene1State
 {
@@ -29,6 +30,10 @@ public class Scene1_UIManager : MonoBehaviour
 
     public HighLighter lighterHighLighter;
     public HighLighter cubeHighLighter;
+    [Header("Cube interactor")]
+
+    public WoodCubeCollider cubeCollider;
+    public XRGrabInteractable cubeGrab;
 
 
     private Scene1State currentState;
@@ -65,6 +70,7 @@ public class Scene1_UIManager : MonoBehaviour
             case Scene1State.RotateObject:
                 objectPromptUI.SetActive(true);
                cubeHighLighter.enabled = true;
+                cubeGrab.enabled = true;
                 AudioManager.Instance.PlayRotateTheObj();
 
 
@@ -111,10 +117,12 @@ public class Scene1_UIManager : MonoBehaviour
     }
     public void OnCubePicked()
     {
+        cubeHighLighter.enabled = false;
+        cubeCollider.enabled = true;
         if (currentState == Scene1State.RotateObject)
             SetState(Scene1State.Completed);
-        cubeHighLighter.enabled = false;
-       
+        
+
 
     }
 

@@ -47,6 +47,10 @@ public class Scene4_UIManager : MonoBehaviour
     public GameObject slit2;
     public GameObject slit3;
 
+    [Header("Next Indicator")]
+    public GameObject nextIndicator;
+
+
     // ---------------- DOUBLE ARROWS ----------------
     [Header("Double Arrows")]
     public DoubleArrowSingleParam wavelengthArrow;
@@ -56,8 +60,12 @@ public class Scene4_UIManager : MonoBehaviour
     // ---------------- MULTIPLIERS ----------------
     [Header("Arrow Multipliers")]
     public float wavelengthArrowMultiplier = 0.5f;
+   
+
     public float distanceArrowMultiplier = 1.5f;
     public float slitArrowMultiplier = 1.0f;
+
+
 
     // ---------------- STATE ----------------
     enum UIStage { Wavelength, Distance, Slit }
@@ -89,6 +97,8 @@ public class Scene4_UIManager : MonoBehaviour
 
         if (FormulaPanel)
             FormulaPanel.SetActive(false);
+        if (nextIndicator)
+            nextIndicator.SetActive(false);
 
         AudioManager.Instance.Playscene4Intro();
         Invoke(nameof(SliderPanelAppear), 10f);
@@ -104,6 +114,9 @@ public class Scene4_UIManager : MonoBehaviour
     void OnNextClicked()
     {
         nextButton.interactable = false;
+        
+    if (nextIndicator)
+        nextIndicator.SetActive(false);
 
         switch (currentStage)
         {
@@ -140,6 +153,9 @@ public class Scene4_UIManager : MonoBehaviour
         {
             wavelengthTouched = true;
             nextButton.interactable = true;
+
+            if (nextIndicator)
+                nextIndicator.SetActive(true);
         }
 
         switch (Mathf.RoundToInt(value))
@@ -184,6 +200,8 @@ public class Scene4_UIManager : MonoBehaviour
         {
             distanceTouched = true;
             nextButton.interactable = true;
+            if (nextIndicator)
+                nextIndicator.SetActive(true);
         }
 
         if (!distanceExplainPlayed)
@@ -214,6 +232,8 @@ public class Scene4_UIManager : MonoBehaviour
         {
             slitTouched = true;
             CheckAllSlidersExplored();
+            if (nextIndicator)
+                nextIndicator.SetActive(true);
         }
     }
 
@@ -252,7 +272,7 @@ public class Scene4_UIManager : MonoBehaviour
 
         // Combine wavelength + distance influence
         float combined =
-            (spacingT + distanceT) * 0.5f;
+    (spacingT + distanceT * 0) * 0.5f;
 
         wavelengthArrow.lengthMultiplier =
             1f + combined * wavelengthArrowMultiplier;

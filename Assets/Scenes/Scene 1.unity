@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 6570826}
   - component: {fileID: 6570825}
   - component: {fileID: 6570827}
+  - component: {fileID: 6570828}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -150,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 6570820}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.9888002, y: 1.164, z: 0.72240007}
+  m_LocalPosition: {x: 1.9888002, y: 1.259, z: 0.72240007}
   m_LocalScale: {x: 0.16000001, y: 0.16000001, z: 0.16000001}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -241,7 +242,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6570820}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
   m_Name: 
@@ -328,7 +329,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 1
   m_PredictedVisualsTransform: {fileID: 0}
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -401,7 +402,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &6570827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +419,33 @@ MonoBehaviour:
   blinkSpeed: 2
   intensity: 2
   blink: 1
+--- !u!114 &6570828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6570820}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b0b1dbbed3702549ab138713a692c3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WoodCubeCollider
+  onCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1765476568}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 379e62f68299b4a4586911a4fe6c715f, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &50592352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,6 +2500,8 @@ MonoBehaviour:
   objectPromptUI: {fileID: 865011030}
   lighterHighLighter: {fileID: 5620083685118878760}
   cubeHighLighter: {fileID: 6570827}
+  cubeCollider: {fileID: 0}
+  cubeGrab: {fileID: 6570825}
 --- !u!1 &1765476566
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,7 +2547,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2619,8 +2649,11 @@ MonoBehaviour:
   natureOfLightClip: {fileID: 8300000, guid: d12d5e33a30028e42bfbf1066d7f8f1d, type: 3}
   lighterClick: {fileID: 8300000, guid: 16655f6b77e5fc149a04f4a1f644499d, type: 3}
   rotateObj: {fileID: 8300000, guid: ea7414a74f646884aa5ce0574ad2eaeb, type: 3}
+  woodHit: {fileID: 8300000, guid: 379e62f68299b4a4586911a4fe6c715f, type: 3}
   pickUpDoubleSlit: {fileID: 0}
   metalClick: {fileID: 8300000, guid: 0f208ebc2d482714cb6456d44ae7b8ad, type: 3}
+  metalPickup: {fileID: 0}
+  lampHandle: {fileID: 0}
   lampLightSource: {fileID: 8300000, guid: 389f40e5866db9241876e9e192330bcb, type: 3}
   placeDoubleSlit: {fileID: 8300000, guid: 06407776a865a9a439f5a79902bc47c5, type: 3}
   interferencePattern: {fileID: 8300000, guid: 019bfc88a6cbb944586aeaba2ab06d93, type: 3}
