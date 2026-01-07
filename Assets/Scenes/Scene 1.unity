@@ -2500,7 +2500,7 @@ MonoBehaviour:
   objectPromptUI: {fileID: 865011030}
   lighterHighLighter: {fileID: 5620083685118878760}
   cubeHighLighter: {fileID: 6570827}
-  cubeCollider: {fileID: 0}
+  cubeCollider: {fileID: 6570828}
   cubeGrab: {fileID: 6570825}
 --- !u!1 &1765476566
 GameObject:
